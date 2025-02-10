@@ -1,73 +1,97 @@
-// Pastikan DOM sudah sepenuhnya dimuat sebelum memanipulasi elemen
 document.addEventListener("DOMContentLoaded", () => {
     const noButton = document.querySelector('.no-button');
     const yesButton = document.querySelector('.yes-button');
 
-    // Menambahkan event listener ke tombol jika elemen ditemukan
     if (noButton && yesButton) {
         noButton.addEventListener('click', handleNoClick);
         yesButton.addEventListener('click', handleYesClick);
     } else {
-        console.warn("Tombol tidak ditemukan di DOM.");
+        console.warn("Tombol Ya/Tidak tidak ditemukan di DOM.");
     }
-
-    // Panggil fungsi untuk memeriksa update versi aplikasi
-    checkForUpdates();
 });
 
-// Daftar pesan yang akan ditampilkan saat tombol 'No' diklik
-const messages = [
-    "Apakah kamu yakin?",
-    "Sungguh yakin??",
-    "Apakah kamu pasti?",
-    "Tolong, sayang...",
-    "Pikirkan dulu ya!",
-    "Jika kamu bilang tidak, aku akan sangat sedih...",
-    "Aku akan sangat sedih...",
-    "Aku akan sangat sangat sangat sedih...",
-    "Oke, baiklah, aku akan berhenti bertanya...",
-    "Canda, tolong bilang iya ya! ❤️"
-];
-
+let hasPressedNo = false;
 let messageIndex = 0;
+let yesButtonSize = 16;
+let currentLanguage = "id";
 
-// Fungsi untuk menangani klik pada tombol 'No'
+const textContent = {
+    id: {
+        mainText: "Apakah Kamu Mau Menjadi Valentineku?",
+        yes: "Ya",
+        no: "Tidak",
+        messages: [
+            "Apakah kamu yakin?",
+            "Sungguh yakin??",
+            "Pikirkan lagi, please...",
+            "Kamu tega? 😢",
+            "Hatiku hancur 💔",
+            "Aku mulai menangis 😭",
+            "Tolong bilang iya! 🥺",
+            "Jangan begitu dong 😭",
+            "Oke, aku menyerah...",
+            "Canda, bilang iya ya! ❤️"
+        ]
+    },
+    en: {
+        mainText: "Will You Be My Valentine?",
+        yes: "Yes",
+        no: "No",
+        messages: [
+            "Are you sure?",
+            "Really sure??",
+            "Think again, please...",
+            "Are you that cruel? 😢",
+            "My heart is broken 💔",
+            "I'm starting to cry 😭",
+            "Please say yes! 🥺",
+            "Don't do this to me 😭",
+            "Okay, I give up...",
+            "Just kidding, say yes! ❤️"
+        ]
+    }
+};
+
 function handleNoClick() {
+    hasPressedNo = true;
     const noButton = document.querySelector('.no-button');
     const yesButton = document.querySelector('.yes-button');
-    noButton.textContent = messages[messageIndex];
-    messageIndex = (messageIndex + 1) % messages.length;
-    const currentSize = parseFloat(window.getComputedStyle(yesButton).fontSize);
-    yesButton.style.fontSize = `${currentSize * 1.5}px`;
-}
 
-// Fungsi untuk menangani klik pada tombol 'Yes' dan pindah ke halaman 'yes_page.html'
-function handleYesClick() {
-    window.location.href = "yes_page.html";
-}
+    noButton.textContent = textContent[currentLanguage].messages[messageIndex];
+    messageIndex = (messageIndex + 1) % textContent[currentLanguage].messages.length;
 
-// Fungsi untuk memeriksa update versi aplikasi
-async function checkForUpdates() {
-    const currentVersion = "1.0"; // Versi aplikasi saat ini
-    const versionUrl = "https://raw.githubusercontent.com/ivysone/Will-you-be-my-Valentine-/main/version.json"; // URL file versi
+    yesButtonSize *= 1.5;
+    yesButton.style.fontSize = `${yesButtonSize}px`;
 
-    try {
-        const response = await fetch(versionUrl);
-        if (!response.ok) {
-            console.warn("Could not fetch version information.");
-            return;
-        }
-        const data = await response.json();
-        const latestVersion = data.version;
-        const updateMessage = data.updateMessage;
+    yesButton.textContent = textContent[currentLanguage].yes;
 
-        // Jika versi terbaru tidak sama dengan versi saat ini, tampilkan pesan pembaruan
-        if (currentVersion !== latestVersion) {
-            alert(updateMessage);
-        } else {
-            console.log("You are using the latest version.");
-        }
-    } catch (error) {
-        console.error("Error checking for updates:", error);
+    if (yesButtonSize > 250) {
+        yesButton.textContent = currentLanguage === "id" ? "AYO, BILANG IYA! 😍" : "COME ON, SAY YES! 😍";
     }
+    if (yesButtonSize > 400) {
+        yesButton.textContent = currentLanguage === "id" ? "IYAAA" : "YESSS";
+    }
+}
+
+function handleYesClick() {
+    const yesButton = document.querySelector('.yes-button');
+
+    if (!hasPressedNo) {
+        yesButton.textContent = currentLanguage === "id" ? "Tunggu, tekan 'Tidak' dulu" : "Wait, press 'No' first";
+        return;
+    }
+
+    yesButton.style.transform = "scale(1.5)";
+    yesButton.style.transition = "transform 0.3s ease-in-out";
+
+    setTimeout(() => {
+        window.location.href = "yes_page.html";
+    }, 500);
+}
+
+function switchLanguage(lang) {
+    currentLanguage = lang;
+    document.getElementById("question").textContent = textContent[lang].mainText;
+    document.querySelector(".yes-button").textContent = textContent[lang].yes;
+    document.querySelector(".no-button").textContent = textContent[lang].no;
 }
