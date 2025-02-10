@@ -5,54 +5,79 @@ body {
   align-items: center;
   height: 100vh;
   margin: 0;
-  background-color: #f9e3e3;
+  background-color: #ffb6c1; /* Pink Valentine */
   font-family: 'Arial', sans-serif;
   flex-direction: column;
-}
-
-.container {
   text-align: center;
 }
 
+/* Container */
+.container {
+  background: none; /* Hapus background putih */
+  padding: 20px;
+  border-radius: 15px;
+}
+
+/* Judul */
 h1 {
   font-size: 2.5em;
-  color: #d32f2f;
+  color: #ffffff;
+  text-shadow: 2px 2px 5px #d32f2f;
   margin-bottom: 20px;
 }
 
+/* Tombol */
 .buttons {
   margin-top: 20px;
 }
 
 .yes-button, .no-button {
   font-size: 1.5em;
-  padding: 10px 20px;
+  padding: 15px 30px;
   border: none;
-  border-radius: 5px;
+  border-radius: 10px;
   cursor: pointer;
-  transition: all 0.3s ease; /* Add transition effect */
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .yes-button {
-  background-color: #4caf50;
+  background-color: #ff4081; /* Pink terang */
   color: white;
   margin-right: 10px;
 }
 
 .no-button {
-  background-color: #f44336;
+  background-color: #ff1744; /* Merah terang */
   color: white;
 }
 
-/* Hover Effects */
+/* Efek Hover */
 .yes-button:hover, .no-button:hover {
-  transform: scale(1.1); /* Slightly increase the size on hover */
+  transform: scale(1.1);
 }
 
-/* Image styles */
+/* Efek Pembesaran Tombol Ya */
+.yes-button.grow {
+  transition: font-size 0.3s ease-in-out;
+}
+
+/* Gambar */
 .gif_container img {
   max-width: 100%;
   height: auto;
-  border-radius: 10px;
+  border-radius: 15px;
   margin-top: 20px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Footer Nama Pemberi */
+.footer {
+  margin-top: 30px;
+  font-size: 1.2em;
+  color: #ffffff;
+  font-weight: bold;
+  text-align: center;
+  font-family: 'Arial', sans-serif;
+  text-shadow: 2px 2px 5px #d32f2f;
 }
