@@ -1,26 +1,84 @@
-/* Styling for Yes Page */
+/* Global Styles */
 body {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     margin: 0;
-    background-color: #f9e3e3;  /* Soft pink background */
+    background-color: #f9e3e3; /* Warna pink solid seperti halaman utama */
     font-family: 'Arial', sans-serif;
+    text-align: center;
+    color: #d32f2f; /* Warna merah muda */
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+/* Efek animasi masuk */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 .container {
-    text-align: center;
+    max-width: 600px;
+    padding: 20px;
+    border-radius: 10px;
+    animation: popIn 1s ease-in-out;
+}
+
+/* Efek pop-up */
+@keyframes popIn {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
 }
 
 .header_text {
-    font-size: 3em;
-    color: #d32f2f;  /* Red color for the header text */
+    font-size: 2.5em;
+    font-weight: bold;
+    margin-bottom: 10px;
 }
 
+/* GIF Styles */
 .gif_container img {
-    width: 100%; 
-    max-width: 500px; 
-    height: auto; 
-    margin-top: 20px;  /* Add some margin to the gif */
+    max-width: 100%;
+    border-radius: 10px;
+    animation: bounce 2s infinite alternate;
+}
+
+/* Efek GIF melompat */
+@keyframes bounce {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(-10px);
+    }
+}
+
+/* Tombol Kembali */
+.back-button {
+    margin-top: 20px;
+    padding: 10px 15px;
+    font-size: 1.2em;
+    font-weight: bold;
+    background-color: #ff4081;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+
+.back-button:hover {
+    background-color: #d81b60;
+    transform: scale(1.1);
 }
