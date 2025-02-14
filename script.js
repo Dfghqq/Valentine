@@ -23,14 +23,14 @@ const textContent = {
         messages: [
             "Apakah kamu yakin?",
             "Sungguh yakin??",
-            "Pikirkan lagi, please...",
-            "Kamu tega? 😢",
-            "Hatiku hancur 💔",
-            "Aku mulai menangis 😭",
-            "Tolong bilang iya! 🥺",
-            "Jangan begitu dong 😭",
-            "Oke, aku menyerah...",
-            "Canda, bilang iya ya! ❤️"
+            "Pikirinn lagi, please...",
+            "Kamu tegaaa",
+            "seriusann nihh?",
+            "sedihh banget sihh",
+            "pilihh iyaa dong",
+            "pilihh iya ditombol sebelahh",
+            "Oke, aku nyerah dehh...",
+            "tapii boong, bilang iya ya!"
         ]
     },
     en: {
@@ -40,14 +40,14 @@ const textContent = {
         messages: [
             "Are you sure?",
             "Really sure??",
-            "Think again, please...",
-            "Are you that cruel? 😢",
-            "My heart is broken 💔",
-            "I'm starting to cry 😭",
-            "Please say yes! 🥺",
-            "Don't do this to me 😭",
+            "Think about it again, please...",
+            "How could you...",
+            "Are you really serious??",
+            "This is so sad...",
+            "Please choose yes...",
+            " Pick yes on the button next to this...",
             "Okay, I give up...",
-            "Just kidding, say yes! ❤️"
+            "But just kidding, say yes!"
         ]
     }
 };
